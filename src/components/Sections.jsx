@@ -25,25 +25,58 @@ export function Achievements() {
 }
 
 export function ClientStrip() {
-  const ref = useRef(null);
-  const scroll = (d) => ref.current?.scrollBy({ left: d * 280, behavior: 'smooth' });
+  const view = useRef(null), track = useRef(null), st = useRef({ off: 0, glide: 0, speed: 0, hold: false, setW: 0 });
+  const [broken, setBroken] = useState(() => new Set());
+  const logos = CLIENTS.filter((c) => !broken.has(c.file));
+  // Continuous, linear drift (px/s). The list is rendered twice so the wrap-around is invisible.
+  useEffect(() => {
+    const el = track.current, v = view.current;
+    if (!el || !v) return undefined;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)'), s = st.current;
+    const measure = () => { s.setW = el.scrollWidth / 2; };
+    measure();
+    const ro = new ResizeObserver(measure); ro.observe(el);
+    let raf = 0, last = performance.now();
+    const tick = (now) => {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      const target = mq.matches || s.hold ? 0 : 34;
+      s.speed += (target - s.speed) * Math.min(1, dt * 5);
+      const g = s.glide * (1 - Math.exp(-dt * 7));
+      s.glide -= g; if (Math.abs(s.glide) < 0.3) { g && (s.off += s.glide); s.glide = 0; }
+      s.off += s.speed * dt + g;
+      if (s.setW > 0) s.off = ((s.off % s.setW) + s.setW) % s.setW;
+      el.style.transform = `translate3d(${-s.off}px,0,0)`;
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
+  }, [logos.length]);
+  const nudge = (d) => { st.current.glide += d * Math.max(160, (view.current?.clientWidth || 600) * 0.6); };
+  const hold = (on) => () => { st.current.hold = on; };
+  const sets = [0, 1];
   return (
     <section className="clients" aria-label="Clients">
       <div className="container">
         <p className="clients__label">{CLIENTS_LABEL}</p>
-        <div className="clients__row">
-          <button className="arrow-btn" aria-label="Previous clients" onClick={() => scroll(-1)}><Icon name="left" size={16} /></button>
-          <ul className="clients__list" ref={ref}>
-            {CLIENTS.map((c) => (
-              <li key={c.file}>
-                <span className="clients__tile">
-                  <img src={`/client/${encodeURIComponent(c.file)}`} alt={`${c.name} logo`} width={c.w} height={c.h} loading="lazy" decoding="async"
-                    onError={(e) => { e.currentTarget.closest('li').hidden = true; }} />
-                </span>
-              </li>
-            ))}
-          </ul>
-          <button className="arrow-btn" aria-label="Next clients" onClick={() => scroll(1)}><Icon name="right" size={16} /></button>
+        <div className="clients__row" onMouseEnter={hold(true)} onMouseLeave={hold(false)} onFocus={hold(true)} onBlur={hold(false)}>
+          <button className="arrow-btn" aria-label="Previous clients" onClick={() => nudge(-1)}><Icon name="left" size={16} /></button>
+          <div className="clients__view" ref={view}>
+            <div className="clients__track" ref={track}>
+              {sets.map((n) => (
+                <ul key={n} className="clients__list" aria-hidden={n === 1 ? 'true' : undefined} aria-label={n === 0 ? 'Our clients' : undefined}>
+                  {logos.map((c) => (
+                    <li key={c.file}>
+                      <span className="clients__tile">
+                        <img src={c.src} alt={n === 0 ? (c.name.startsWith('Client logo') ? c.name : `${c.name} logo`) : ''} decoding="async"
+                          onError={() => setBroken((p) => new Set(p).add(c.file))} />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              ))}
+            </div>
+          </div>
+          <button className="arrow-btn" aria-label="Next clients" onClick={() => nudge(1)}><Icon name="right" size={16} /></button>
         </div>
       </div>
     </section>

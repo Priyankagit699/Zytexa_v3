@@ -3,7 +3,7 @@
 //  suggestions of tools used to deliver each service. Removed as weak/misleading: Slack & Google Analytics (13), Tag Manager (12),
 //  Nginx & Docker (10), Blender (7), Adobe XD (discontinued, 9), YouTube (11), GitHub (14).
 //  Business Tips keeps Google Sheets ONLY because the card lists "Cost-ROI Planning" (budgets/ROI models are built in spreadsheets).
-// Source of truth: public/references/Zytexa Technology .pdf (titles follow the PDF, e.g. #12 "Google My Business (GMB) Optimization").
+// Source of truth: documents-private/Zytexa Technology .pdf (titles follow the PDF, e.g. #12 "Google My Business (GMB) Optimization").
 export const SERVICES = [
   { id: 1, icon: 'code', title: 'Website Development', tagline: 'Build Fast, Functional & Future-ready Websites.',
     short: 'Business, portfolio, e-commerce, CMS, static & dynamic websites.',

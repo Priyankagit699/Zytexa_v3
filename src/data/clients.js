@@ -1,11 +1,24 @@
-// Client logos live in /public/client. File names contain spaces, so URLs are encoded in the component.
-// Names come from the logo artwork/filename; `alt` is only set where the filename is not a clear company name.
+import FILES from 'virtual:client-logos';
+
+// Every image in public/client is shown automatically (see vite.config.js). Names below are used for alt text only and
+// were checked against the logo artwork. A file with no name here (or an unconfirmed one) gets a neutral "Client logo N".
+const NAMES = {
+  'BR-Logo.webp': 'B.R. Enterprise',
+  'Orbit Ad 1 (1).png': 'Orbit Chemicals',
+  'Untitled-design-20.webp': 'RR Bangles',
+  'Wedding India English.png': 'MelodiaPelle', // artwork reads "MELODIAPELLE - Handcrafted Leather Footwear"
+  'euoinia ads 1 .png': 'Euonia',
+  'murlit post  (1).png': 'Murlit Enterprises',
+  'Mahi Bangels  (1) (1).png': 'Mahi Bangles', // artwork spells "Bangles"
+  'Shri Ganraj post .png': 'Shri Ganraj Group',
+  'WhatsApp Image 2026-10-21 at 9.36.30 AM.jpeg': 'Fashion Mart India', // artwork reads "FMI - Fashion Mart India"
+  'WhatsApp Image 2026-10-21 at 9.36.53 AM.jpeg': 'Wedding Wings', // artwork reads "Wedding Wings - By Jitesh"
+  'artisankart tag (2).pdf.png': 'Artisanekart',
+  'hos videoooooooooooooooooooooooooooo.png': 'House of Sukrit', // artwork reads "House Of SUKRIT"
+  'mainlogo-1-e1780054321933.png': 'Italian Velvet',
+  // 'pixination.png' is intentionally unnamed: the script artwork reads "PIXIE NATIONN", which does not clearly match the filename.
+};
+// Cropped derivatives (originals stay untouched in public/client).
+const DERIVED = { 'hos videoooooooooooooooooooooooooooo.png': '/client-derived/house-of-sukrit-cropped.png' };
 export const CLIENTS_LABEL = 'Trusted by forward-thinking brands';
-export const CLIENTS = [
-  { name: 'B.R. Enterprise', file: 'BR-Logo.webp', w: 200, h: 80 },
-  { name: 'Orbit Chemicals', file: 'Orbit Ad 1 (1).png', w: 175, h: 140 },
-  { name: 'RR Bangles', file: 'Untitled-design-20.webp', w: 500, h: 500 },
-  { name: 'Melodia Pelle', file: 'Wedding India English.png', w: 262, h: 82 },
-  { name: 'Euonia', file: 'euoinia ads 1 .png', w: 134, h: 134 },
-  { name: 'Murlit Enterprises', file: 'murlit post  (1).png', w: 144, h: 124 },
-];
+export const CLIENTS = FILES.map((file, i) => ({ file, name: NAMES[file] || `Client logo ${i + 1}`, src: DERIVED[file] || `/client/${encodeURIComponent(file)}` }));

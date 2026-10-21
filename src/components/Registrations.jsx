@@ -39,11 +39,11 @@ export default function Registrations() {
                 </p>
               )}
               {r.status && <span className="reg__status"><i aria-hidden="true" />{r.status}</span>}
-              {!r.confirmed && <span className="reg__status reg__status--tbc">To be confirmed</span>}
+              {!r.confirmed && <span className="reg__status reg__status--tbc">{r.pendingLabel || 'To be confirmed'}</span>}
               {r.since && <p className="reg__since">Since {r.since}</p>}
               {r.documentUrl && r.confirmed
                 ? <a className="reg__link" href={r.documentUrl} target="_blank" rel="noopener noreferrer">{r.linkLabel} <span aria-hidden="true">&rarr;</span><span className="sr-only"> (opens in a new tab)</span></a>
-                : <span className="reg__link reg__link--soon">Certificate link coming soon</span>}
+                : <span className="reg__link reg__link--soon">{r.soonText || 'Certificate link coming soon'}</span>}
             </Reveal>
           ))}
         </ul>

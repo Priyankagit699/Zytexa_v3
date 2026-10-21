@@ -474,9 +474,11 @@
 .hero__scroll i::before { content: ''; position: absolute; top: -3px; left: -3px; width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px rgba(127, 240, 255, .9); animation: scrolldot 2.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .hero__scroll i::before { animation: none; } }
 
-/* Client strap: real logos in uniform white tiles, original colours preserved */
-.clients__list { align-items: stretch; }
-.clients__list li { display: flex; align-items: center; justify-content: center; padding: 6px 10px; border-left: 0; flex: 1 0 140px; }
+/* Client strap: continuously drifting logos in uniform white tiles, original colours preserved */
+.clients__view { flex: 1; min-width: 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.clients__track { display: flex; width: max-content; will-change: transform; }
+.clients .clients__list { flex: none; display: flex; overflow: visible; justify-content: flex-start; gap: 0; margin: 0; padding: 0; list-style: none; }
+.clients .clients__list li { flex: 0 0 auto; width: 176px; padding: 6px 8px; border-left: 0; display: flex; }
 .clients__tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 76px; padding: 8px 14px; background: #fff; border: 1px solid #e3eaf3; border-radius: 12px; }
 .clients__list .clients__tile img { max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; filter: none; opacity: 1; }
-@media (max-width: 640px) { .clients__list li { flex-basis: 150px; padding-inline: 6px; } .clients__tile { height: 68px; padding: 8px; } }
+@media (max-width: 640px) { .clients .clients__list li { width: 150px; padding-inline: 6px; } .clients__tile { height: 68px; padding: 8px; } }
