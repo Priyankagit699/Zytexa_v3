@@ -1,0 +1,43 @@
+/* Registrations section - dark theme, scoped to .reg. Uses the site's existing fonts and brand cyan/blue. */
+.reg { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(60% 50% at 12% 0%, rgba(13, 71, 161, .45), transparent 70%), radial-gradient(50% 60% at 92% 100%, rgba(0, 188, 212, .18), transparent 70%), linear-gradient(180deg, #050b1f, #071433); padding-block: clamp(48px, 6vw, 88px); color: #fff; }
+.reg::before { content: ''; position: absolute; inset: 0; z-index: -1; background-image: radial-gradient(rgba(79, 195, 247, .28) 1px, transparent 1.4px); background-size: 28px 28px; -webkit-mask-image: linear-gradient(180deg, #000, transparent 85%); mask-image: linear-gradient(180deg, #000, transparent 85%); }
+.reg__head { max-width: 780px; margin-inline: auto; text-align: center; }
+.reg__pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(0, 188, 212, .45); background: rgba(0, 188, 212, .08); font-size: .74rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: #4fe3f5; }
+.reg__pill i { width: 7px; height: 7px; border-radius: 50%; background: #4fe3f5; box-shadow: 0 0 10px #4fe3f5; }
+.reg__head h2 { margin: 22px 0 14px; font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.12; font-weight: 700; color: #fff; }
+.reg__head h2 span { background: linear-gradient(90deg, #1e6bd6, #00BCD4); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.reg__head p { max-width: 62ch; margin: 0 auto; font-size: clamp(.95rem, 1.2vw, 1.08rem); line-height: 1.7; color: rgba(255, 255, 255, .66); }
+.reg__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 1.8vw, 24px); align-items: center; margin-top: clamp(44px, 5vw, 72px); }
+.reg__card { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(26px, 2.6vw, 36px) 20px clamp(24px, 2.4vw, 30px); border-radius: 22px; border: 1.5px solid rgba(30, 107, 214, .85); background: linear-gradient(180deg, rgba(14, 40, 98, .9), rgba(6, 17, 48, .95)); box-shadow: 0 0 0 1px rgba(79, 195, 247, .08) inset, 0 20px 50px -24px rgba(0, 0, 0, .8), 0 0 28px -8px rgba(30, 107, 214, .55); transition: transform .3s, box-shadow .3s; }
+.reg__card:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px rgba(79, 195, 247, .16) inset, 0 24px 56px -24px rgba(0, 0, 0, .85), 0 0 36px -6px rgba(0, 188, 212, .6); }
+.reg__card:nth-child(3) { border-color: rgba(0, 188, 212, .85); }
+.reg__card--primary { padding-block: clamp(34px, 3.4vw, 48px) clamp(30px, 3vw, 38px); border-color: #00BCD4; margin-top: clamp(-34px, -2.6vw, -16px); background: linear-gradient(180deg, rgba(10, 56, 120, .92), rgba(5, 18, 52, .96)); box-shadow: 0 0 0 5px rgba(0, 188, 212, .08), 0 24px 60px -24px rgba(0, 0, 0, .85), 0 0 46px -4px rgba(0, 188, 212, .6); }
+.reg__primary { position: absolute; top: 14px; right: 14px; padding: 3px 10px; border-radius: 999px; border: 1px solid rgba(0, 188, 212, .55); background: rgba(0, 188, 212, .1); font-size: .6rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #4fe3f5; }
+.reg__ico { display: grid; place-items: center; width: 92px; height: 92px; margin-bottom: 20px; border-radius: 50%; color: #fff; background: radial-gradient(circle at 35% 30%, #2f80ff, #0D47A1 75%); box-shadow: 0 0 0 7px rgba(30, 107, 214, .18), 0 0 0 8px rgba(79, 195, 247, .35), 0 0 34px rgba(30, 107, 214, .7); }
+.reg__card:nth-child(2) .reg__ico, .reg__card:nth-child(3) .reg__ico { background: radial-gradient(circle at 35% 30%, #35e0f2, #0aa5be 75%); box-shadow: 0 0 0 7px rgba(0, 188, 212, .16), 0 0 0 8px rgba(79, 227, 245, .4), 0 0 34px rgba(0, 188, 212, .7); animation: reg-glow 4.5s ease-in-out infinite; }
+.reg__card--primary .reg__ico { width: 100px; height: 100px; }
+@keyframes reg-glow { 50% { box-shadow: 0 0 0 7px rgba(0, 188, 212, .22), 0 0 0 8px rgba(79, 227, 245, .55), 0 0 50px rgba(0, 188, 212, .95); } }
+.reg__num { margin: 0 0 8px; font-size: .68rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .5); overflow-wrap: anywhere; }
+.reg__card h3 { color: #fff; font-size: clamp(1.25rem, 1.8vw, 1.65rem); line-height: 1.2; font-weight: 700; }
+.reg__rule { width: 44px; height: 2px; margin: 16px 0 14px; border-radius: 2px; background: linear-gradient(90deg, transparent, #00BCD4, transparent); }
+.reg__auth { margin: 0 0 16px; font-size: .86rem; line-height: 1.55; color: rgba(255, 255, 255, .62); }
+.reg__auth span { display: block; }
+.reg__status { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px; padding: 7px 16px; border-radius: 999px; border: 1px solid rgba(0, 188, 212, .55); background: rgba(0, 188, 212, .08); font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #4fe3f5; }
+.reg__status i { width: 6px; height: 6px; border-radius: 50%; background: #4fe3f5; box-shadow: 0 0 8px #4fe3f5; }
+.reg__status--tbc { border-color: rgba(253, 224, 71, .5); background: rgba(253, 224, 71, .08); color: #fde68a; }
+.reg__since { margin: 0; font-size: .82rem; color: rgba(255, 255, 255, .72); }
+@media (max-width: 1000px) { .reg__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; } .reg__card--primary { margin-top: 0; } }
+@media (max-width: 560px) { .reg__grid { grid-template-columns: minmax(0, 1fr); } .reg__ico, .reg__card--primary .reg__ico { width: 80px; height: 80px; } }
+@media (prefers-reduced-motion: reduce) { .reg__card, .reg__ico { animation: none !important; transition: none; } }
+/* Equal-height outer cards with a taller emphasised centre card (as in the design reference); content centred vertically */
+@media (min-width: 1001px) {
+  .reg__card { min-height: clamp(310px, 25vw, 360px); justify-content: center; }
+  .reg__card--primary { min-height: clamp(350px, 29vw, 410px); }
+}
+.reg__link { margin-top: auto; padding-top: 14px; font-size: .84rem; font-weight: 600; line-height: 1.4; color: #4fe3f5; overflow-wrap: anywhere; }
+.reg__card > :nth-last-child(2) { margin-bottom: 0; }
+a.reg__link { display: inline-flex; align-items: center; gap: 6px; padding: 6px 2px; border-bottom: 1px solid rgba(79, 227, 245, .35); transition: color .2s, border-color .2s; }
+a.reg__link:hover { color: #fff; border-color: #fff; }
+a.reg__link:focus-visible { outline: 2px solid #4fe3f5; outline-offset: 4px; border-radius: 4px; }
+.reg__link--soon { font-weight: 500; font-style: italic; color: rgba(255, 255, 255, .5); cursor: default; }
+@media (prefers-reduced-motion: reduce) { a.reg__link { transition: none; } }
