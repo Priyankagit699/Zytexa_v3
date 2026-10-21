@@ -232,7 +232,6 @@ export function PortfolioPage() {
           <p>We are preparing real project write-ups. Until they are published, we are happy to talk through relevant examples and how we would approach your project.</p>
           <Link to="/contact" className="btn btn--primary btn--sm">Ask about our work <Icon name="arrow" size={14} /></Link>
         </Reveal>
-        <p className="note">Content placeholder: genuine projects, clients and results will be added here by the Zytexa team.</p>
       </PageSection>
     </>
   );

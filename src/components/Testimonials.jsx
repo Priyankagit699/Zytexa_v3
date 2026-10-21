@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Icon from './Icon.jsx';
+import { Link } from 'react-router-dom';
 import Reveal from './Reveal.jsx';
 import { TESTIMONIALS } from '../data/testimonials.js';
 
@@ -13,9 +14,8 @@ function Card({ t }) {
       <blockquote>{t.quote}</blockquote>
       <span className="rv__avatar" aria-hidden="true"><Icon name="team" size={22} stroke={1.5} /></span>
       <figcaption>
-        <span className="rv__who">— {!t.placeholder && <>{t.name}, </>}{t.role}</span>
+        <span className="rv__who">— {t.name}, {t.role}</span>
         <small>{t.place}</small>
-        {t.placeholder && <em className="badge">Sample review</em>}
       </figcaption>
     </figure>
   );
@@ -33,7 +33,7 @@ export default function Testimonials() {
     return () => clearInterval(t);
   }, [paused, n]);
 
-  const pair = n > 1 ? [TESTIMONIALS[i], TESTIMONIALS[(i + 1) % n]] : [TESTIMONIALS[0]];
+  const pair = n === 0 ? [] : n > 1 ? [TESTIMONIALS[i], TESTIMONIALS[(i + 1) % n]] : [TESTIMONIALS[0]];
   return (
     <section className="section rv">
       <div className="container split split--reviews">
@@ -42,6 +42,16 @@ export default function Testimonials() {
           <h2>What Our Clients Say</h2>
           <p className="muted">We value long-term partnerships and take pride in the trust our clients place in us.</p>
         </Reveal>
+        {n === 0 ? (
+          <Reveal className="reviews">
+            <div className="rv__empty">
+              <span className="rv__avatar" aria-hidden="true"><Icon name="team" size={22} stroke={1.5} /></span>
+              <h3>Client reviews are coming soon</h3>
+              <p>We are gathering feedback from our clients to share here. In the meantime, tell us about your project and we will be happy to talk it through.</p>
+              <Link to="/contact" className="btn btn--primary btn--sm">Start a conversation <Icon name="arrow" size={14} /></Link>
+            </div>
+          </Reveal>
+        ) : (
         <Reveal className="reviews" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
           <div className="rv__row" role="group" aria-roledescription="carousel" aria-label="Client reviews">
             <button className="arrow-btn" aria-label="Previous reviews" onClick={() => go(-1)}><Icon name="left" size={15} /></button>
@@ -56,6 +66,7 @@ export default function Testimonials() {
             ))}
           </div>
         </Reveal>
+        )}
       </div>
     </section>
   );

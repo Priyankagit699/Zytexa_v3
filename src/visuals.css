@@ -482,3 +482,10 @@
 .clients__tile { display: flex; align-items: center; justify-content: center; width: 100%; height: 76px; padding: 8px 14px; background: #fff; border: 1px solid #e3eaf3; border-radius: 12px; }
 .clients__list .clients__tile img { max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; filter: none; opacity: 1; }
 @media (max-width: 640px) { .clients .clients__list li { width: 150px; padding-inline: 6px; } .clients__tile { height: 68px; padding: 8px; } }
+
+/* Client Reviews: honest empty state (shown while there are no approved reviews) */
+.rv__empty { display: grid; justify-items: start; gap: 12px; padding: clamp(22px, 2.4vw, 34px); background: #fff; border: 1px solid #dbe8f7; border-radius: 24px; box-shadow: 0 10px 30px rgba(13, 71, 161, .05); }
+.rv__empty h3 { margin: 0; font-size: 1.15rem; }
+.rv__empty p { margin: 0; color: var(--muted); line-height: 1.6; max-width: 52ch; }
+.rv__empty .rv__avatar { grid-row: auto; grid-column: auto; align-self: auto; }
+.rv__empty { gap: 14px; }
