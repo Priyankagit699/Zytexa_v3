@@ -43,7 +43,7 @@ export default function Registrations() {
               {r.since && <p className="reg__since">Since {r.since}</p>}
               {r.documentUrl && r.confirmed
                 ? <a className="reg__link" href={r.documentUrl} target="_blank" rel="noopener noreferrer">{r.linkLabel} <span aria-hidden="true">&rarr;</span><span className="sr-only"> (opens in a new tab)</span></a>
-                : <span className="reg__link reg__link--soon">{r.soonText || 'Certificate link coming soon'}</span>}
+                : <span className="reg__link reg__link--soon" aria-disabled="true">{r.soonText || 'Certificate link coming soon'}</span>}
             </Reveal>
           ))}
         </ul>
